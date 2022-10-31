@@ -8,6 +8,7 @@ import com.example.app.domain.Inventory;
 
 @Mapper
 public interface InventoryDao {
+//MyBatisとの連携用。残席数情報テーブルの操作
 	List<Inventory>selectAll() throws Exception;
 	Inventory selectById(Integer id) throws Exception;
 	Inventory selectBySchedulesIdAndTypeId(Integer schedulesId,Integer typeId) throws Exception;

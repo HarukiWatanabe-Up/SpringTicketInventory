@@ -9,7 +9,7 @@ import com.example.app.domain.Member;
 
 @Mapper
 public interface MemberDao {
-
+//MyBatisとの連携用。会員情報テーブルの操作
 	List<Member>selectAll() throws Exception;
 	Member selectById(Integer id)throws Exception;
 	Member selectByEmail(String email)throws Exception;

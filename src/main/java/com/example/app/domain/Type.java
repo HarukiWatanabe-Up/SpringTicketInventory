@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 public class Type {
-
+//券種クラス
 	private Integer id;
 
 	//2次開発追加

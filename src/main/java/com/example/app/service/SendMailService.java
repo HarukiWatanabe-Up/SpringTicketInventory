@@ -6,6 +6,7 @@ import com.example.app.domain.Reserves;
 
 
 public interface SendMailService {
+//メールを操作するメソッドのインターフェース。SendMailServiceImplで実装。
 	Mail reserveDone(Reserves reserves)throws Exception;
 	Mail addMemberDone(Member member)throws Exception;
 

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class Schedules {
-
+//公演回クラス
 	private Integer id;
 
 	//2次開発追加

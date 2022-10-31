@@ -12,6 +12,7 @@ import com.example.app.domain.Schedules;
 import com.example.app.domain.Type;
 
 public interface ReservesService {
+//予約情報を操作するメソッドのインターフェース。ReservesServiceImplで実装。
 	List<Reserves>getAllReserves() throws Exception;
 	List<Reserves>getMemberReserves(Integer memberId) throws Exception;
 

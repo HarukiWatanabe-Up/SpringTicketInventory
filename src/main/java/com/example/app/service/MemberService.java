@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.app.domain.Member;
 
 public interface MemberService {
+//会員を操作するメソッドのインターフェース。MemberyServiceImplで実装。
 	List<Member> getMemberList() throws Exception;
 	Member getMemberById(Integer id)throws Exception;
 	Member getMemberByEmail(String email)throws Exception;

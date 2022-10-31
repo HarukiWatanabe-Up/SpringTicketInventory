@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 
 public class Reserves {
-
+//予約情報クラス
 	private Integer id;
 	private Member member;
 	private Schedules schedules;

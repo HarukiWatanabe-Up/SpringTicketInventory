@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 public class Inventory {
+//残席数情報クラス
 
 	private Integer id;
 	private Schedules schedules;
@@ -17,8 +18,6 @@ public class Inventory {
 	@NotNull
 	@Range(min= 0,max = 9999)
 	private Integer sheet;
-//↓これが変な動きしている。htmlのtexttypeをnumberで対応
-//	@Pattern(regexp = "^[0-9]+$")
 	//↑ここまで
 
 }

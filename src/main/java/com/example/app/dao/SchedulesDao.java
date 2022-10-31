@@ -8,6 +8,7 @@ import com.example.app.domain.Schedules;
 
 @Mapper
 public interface SchedulesDao {
+//MyBatisとの連携用。公演回テーブルの操作
 	List<Schedules>selectAll()throws Exception;
 	Schedules selectById(Integer id)throws Exception;
 	void insert(Schedules schedules)throws Exception;

@@ -29,7 +29,7 @@ public class ApplicationConfig implements WebMvcConfigurer{
 		return messageSource;
 	}
 
-
+//AuthFilter.javaの有効化
 	@Bean
 	 public FilterRegistrationBean<AuthFilter> authFilter() {
 	 var bean = new FilterRegistrationBean<AuthFilter>(new AuthFilter());

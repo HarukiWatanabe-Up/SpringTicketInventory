@@ -8,6 +8,7 @@ import com.example.app.domain.Schedules;
 import com.example.app.domain.Type;
 
 public interface SettingService {
+//選択リスト/公演設定を操作するメソッドのインターフェース。SettingServiceImplで実装。
 	List<Orders>getOrdersList()throws Exception;
 	List<Payment>getPaymentList()throws Exception;
 	List<Schedules>getSchedulesList()throws Exception;

@@ -19,6 +19,7 @@ import com.example.app.domain.Type;
 @Transactional
 public class SettingServiceImpl implements SettingService {
 
+	//テーブル操作用オブジェクト
 	@Autowired
 	private OrdersDao ordersDao;
 	@Autowired
@@ -28,6 +29,7 @@ public class SettingServiceImpl implements SettingService {
 	@Autowired
 	private TypeDao typeDao;
 
+	//一覧を返す
 	@Override
 	public List<Orders> getOrdersList() throws Exception {
 		return ordersDao.selectAll();
@@ -48,78 +50,7 @@ public class SettingServiceImpl implements SettingService {
 		return typeDao.selectAll();
 	}
 
-	@Override
-	public void addSchedule(Schedules schedule) throws Exception {
-		schedulesDao.insert(schedule);
-
-	}
-
-	@Override
-	public void editSchedule(Schedules schedule) throws Exception {
-		schedulesDao.update(schedule);
-
-	}
-
-	@Override
-	public void deleteSchedule(Integer scheduleId) throws Exception {
-		schedulesDao.delete(scheduleId);
-
-	}
-	@Override
-	public void endSchedule(Integer scheduleId) throws Exception {
-		schedulesDao.end(scheduleId);
-
-	}
-
-	@Override
-	public void addType(Type type) throws Exception {
-		typeDao.insert(type);
-
-	}
-
-	@Override
-	public void editType(Type type) throws Exception {
-		typeDao.update(type);
-
-	}
-	@Override
-	public void deleteType(Integer typeId) throws Exception {
-		typeDao.delete(typeId);
-
-	}
-
-	@Override
-	public void addPayment(Payment payment) throws Exception {
-		paymentDao.insert(payment);
-	}
-
-	@Override
-	public void editPayment(Payment payment) throws Exception {
-		paymentDao.update(payment);
-	}
-	@Override
-	public void deletePayment(Integer paymentId) throws Exception {
-		paymentDao.delete(paymentId);
-
-	}
-
-	@Override
-	public void addOrders(Orders orders) throws Exception {
-		ordersDao.insert(orders);
-
-	}
-
-	@Override
-	public void editOrders(Orders orders) throws Exception {
-		ordersDao.update(orders);
-
-	}
-	@Override
-	public void deleteOrders(Integer ordersId) throws Exception {
-		ordersDao.delete(ordersId);
-
-	}
-
+	//idを引数に対象のオブジェクトを返す
 	@Override
 	public Schedules getScheduleById(Integer schedulesId) throws Exception {
 		return schedulesDao.selectById(schedulesId);
@@ -140,8 +71,93 @@ public class SettingServiceImpl implements SettingService {
 		return ordersDao.selectById(ordersId);
 	}
 
+	//テーブルに追加
+	@Override
+	public void addSchedule(Schedules schedule) throws Exception {
+		schedulesDao.insert(schedule);
 
+	}
 
+	//レコードの変更
+	@Override
+	public void editSchedule(Schedules schedule) throws Exception {
+		schedulesDao.update(schedule);
 
+	}
+
+	//レコードの削除。物理削除
+	@Override
+	public void deleteSchedule(Integer scheduleId) throws Exception {
+		schedulesDao.delete(scheduleId);
+
+	}
+
+	//公演終了フラグの操作
+	@Override
+	public void endSchedule(Integer scheduleId) throws Exception {
+		schedulesDao.end(scheduleId);
+
+	}
+
+	//テーブルに追加
+	@Override
+	public void addType(Type type) throws Exception {
+		typeDao.insert(type);
+
+	}
+
+	//レコードの変更
+	@Override
+	public void editType(Type type) throws Exception {
+		typeDao.update(type);
+
+	}
+
+	//レコードの削除。物理削除
+	@Override
+	public void deleteType(Integer typeId) throws Exception {
+		typeDao.delete(typeId);
+
+	}
+
+	//テーブルに追加
+	@Override
+	public void addPayment(Payment payment) throws Exception {
+		paymentDao.insert(payment);
+	}
+
+	//レコードの変更
+	@Override
+	public void editPayment(Payment payment) throws Exception {
+		paymentDao.update(payment);
+	}
+
+	//レコードの削除。物理削除
+	@Override
+	public void deletePayment(Integer paymentId) throws Exception {
+		paymentDao.delete(paymentId);
+
+	}
+
+	//テーブルに追加
+	@Override
+	public void addOrders(Orders orders) throws Exception {
+		ordersDao.insert(orders);
+
+	}
+
+	//レコードの変更
+	@Override
+	public void editOrders(Orders orders) throws Exception {
+		ordersDao.update(orders);
+
+	}
+
+	//レコードの削除。物理削除
+	@Override
+	public void deleteOrders(Integer ordersId) throws Exception {
+		ordersDao.delete(ordersId);
+
+	}
 
 }

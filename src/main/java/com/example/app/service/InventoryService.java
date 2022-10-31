@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.app.domain.Inventory;
 
 public interface InventoryService {
+//残席数を操作するメソッドのインターフェース。InventoryServiceImplで実装。
 	List<Inventory>getInventoryList() throws Exception;
 	Inventory getInventoryById(Integer id) throws Exception;
 	Inventory getBySchedulesIdAndTypeId(Integer schedulesId,Integer typeId) throws Exception;

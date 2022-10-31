@@ -14,6 +14,7 @@ import lombok.Data;
 
 @Data
 public class Member {
+//会員情報クラス
 	private Integer id;
 
 	@NotBlank(groups = { AddGroup.class })

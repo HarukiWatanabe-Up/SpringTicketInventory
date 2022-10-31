@@ -25,6 +25,7 @@ import com.example.app.domain.Type;
 @Transactional
 public class ReservesServiceImpl implements ReservesService {
 
+	//テーブル操作用オブジェクト
 	@Autowired
 	private ReservesDao reservesDao;
 	@Autowired
@@ -38,69 +39,83 @@ public class ReservesServiceImpl implements ReservesService {
 	@Autowired
 	private TypeDao typeDao;
 
+	//一覧を返す
 	@Override
 	public List<Reserves> getAllReserves() throws Exception {
 		return reservesDao.selectAll();
 	}
 
+	//memberIdを引数に対象のListを返す
 	@Override
 	public List<Reserves> getMemberReserves(Integer memberId) throws Exception {
 		return reservesDao.selectMemberReserves(memberId);
 	}
 
+	//idを引数に対象のオブジェクトを返す
 	@Override
 	public Reserves getById(Integer id) throws Exception {
 		return reservesDao.selectById(id);
 	}
 
+	//テーブルに追加
 	@Override
 	public void addReserve(Reserves reserves) throws Exception {
 		reservesDao.insert(reserves);
 
 	}
 
+	//レコードの変更
 	@Override
 	public void editReserve(Reserves reserves) throws Exception {
 		reservesDao.update(reserves);
 
 	}
 
+	//レコードの削除。物理削除
 	@Override
 	public void deleteReserve(Reserves reserves) throws Exception {
 		reservesDao.delete(reserves);
 
 	}
 
+	//すべての会員情報を取得
 	@Override
 	public List<Member> getMemberList() throws Exception {
 		return memberDao.selectAll();
 	}
 
+	//すべての扱いを取得
 	@Override
 	public List<Orders> getOrdersList() throws Exception {
 		return ordersDao.selectAll();
 	}
 
+	//すべての支払い方法を取得
 	@Override
 	public List<Payment> getPaymentList() throws Exception {
 		return paymentDao.selectAll();
 	}
 
+	//すべての公演回を取得
 	@Override
 	public List<Schedules> getSchedulesList() throws Exception {
 		return schedulesDao.selectAll();
 	}
 
+	//すべての券種を取得
 	@Override
 	public List<Type> getTypeList() throws Exception {
 		return typeDao.selectAll();
 	}
 
+	//券種と枚数を引数に合計を返す
 	@Override
 	public int getTotalPrice(Reserves reserves) throws Exception {
 		return (int) (reserves.getType().getPrice() * reserves.getAmount());
 	}
 
+	//ReservesFormオブジェクト内の各IntegerをSchedulesなどの各オブジェクトに置き換え、
+	//Reservesオブジェクトに代入する。
 	@Override
 	public Reserves changeIdToString(ReservesForm form) throws Exception {
 		Reserves reserves = new Reserves();
@@ -117,6 +132,9 @@ public class ReservesServiceImpl implements ReservesService {
 		return reserves;
 	}
 
+
+	//Reservesオブジェクト内の各オブジェクトのidを取得し、
+	//ReservesFormオブジェクトに代入する。
 	@Override
 	public ReservesForm StringToChangeId(Reserves reserves) throws Exception {
 		ReservesForm form = new ReservesForm();
@@ -129,40 +147,47 @@ public class ReservesServiceImpl implements ReservesService {
 		return form;
 	}
 
+	//ページ分割用（すべての予約情報）
 	@Override
 	public int getTotalPages(int numPerPage) throws Exception {
 		double totalNum = (double) reservesDao.count();
 		return (int) Math.ceil(totalNum / numPerPage);
 	}
 
+	//ページ分割用（すべての予約情報）
 	@Override
 	public List<Reserves> getReserveListByPage(int page, int numPerPage) throws Exception {
 		int offset = numPerPage * (page - 1);
 		return reservesDao.selectLimited(offset, numPerPage);
 	}
 
+	//ページ分割用（すべての予約情報）
 	@Override
 	public List<Reserves> getEachCount() throws Exception {
 		return reservesDao.selectEachCount();
 	}
 
+	//ページ分割用（扱い別の予約情報（関係者画面用））
 	@Override
 	public List<Reserves> getReserveOrdersListByPage(int ordersId, int page, int numPerPage) throws Exception {
 		int offset = numPerPage * (page - 1);
 		return reservesDao.selectLimitedByOrders(ordersId, offset, numPerPage);
 	}
 
+	//ページ分割用（扱い別の予約情報（関係者画面用））
 	@Override
 	public int getTotalPagesByOrders(int ordersId, int numPerPage) throws Exception {
 		double totalNum = (double) reservesDao.countByOrders(ordersId);
 		return (int) Math.ceil(totalNum / numPerPage);
 	}
 
+	//ここから来場者管理画面用↓
+	//公演回での絞り込み
 	@Override
 	public List<Reserves> getReserveListBySchedules(Integer schedulesId) throws Exception {
 		return reservesDao.selectBySchedules(schedulesId);
 	}
-
+	//来場済みフラグ操作
 	@Override
 	public void visitedReserve(Integer id) throws Exception {
 		reservesDao.visited(id);
@@ -173,6 +198,7 @@ public class ReservesServiceImpl implements ReservesService {
 		reservesDao.notVisited(id);
 	}
 
+	//精算済みフラグ操作
 	@Override
 	public void paidReserve(Integer id) throws Exception {
 		reservesDao.paid(id);
@@ -183,6 +209,7 @@ public class ReservesServiceImpl implements ReservesService {
 		reservesDao.notPaid(id);
 	}
 
+	//来場者集計コンポーネント用
 	@Override
 	public Progress getProgress(Integer schedulesId) throws Exception {
 		Integer stageAmount = 0;
@@ -208,5 +235,6 @@ public class ReservesServiceImpl implements ReservesService {
 		progress.proceeds = proceeds;
 		return progress;
 	}
+	//ここまで来場者管理画面用↑
 
 }

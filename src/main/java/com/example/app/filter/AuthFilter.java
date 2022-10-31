@@ -20,7 +20,7 @@ public class AuthFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
-
+//以下のURLへのリクエストを受け取った際に、
 		String uri = req.getRequestURI();
 		if (!uri.endsWith("/login") &&
 				!uri.endsWith("/addMember") &&
@@ -28,7 +28,9 @@ public class AuthFilter implements Filter {
 				!uri.endsWith("/addMemberDone") &&
 				!uri.contains("/css/") &&
 				!uri.contains("/js/")) {
+//セッションにmemberIdが保存してあるか確認し、nullの場合、
 			if (session.getAttribute("memberId") == null) {
+//ログイン画面へリダイレクトする
 				res.sendRedirect("/");
 				return;
 			}

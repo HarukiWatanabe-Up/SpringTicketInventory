@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class ReservesForm {
-
+//チケット予約画面で使用。予約フォームクラス。
 	private Integer memberId;
 	@Min(1)
 	private Integer schedulesId;
